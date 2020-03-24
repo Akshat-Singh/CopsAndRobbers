@@ -1,4 +1,4 @@
-#Cops and Robbers - The Game
+#Cops and Robbers - The Game#
 
 Developers: Akshat Singh (@Akshat-Singh), Vibodh Nautiyal (vibodhnautiyal), Nikhil Bhave (@XSiege999), Khushi Mehta
 
