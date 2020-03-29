@@ -1,6 +1,6 @@
-#Cops and Robbers - The Game
+# Cops and Robbers - The Game
 
-Developers: Akshat Singh (@Akshat-Singh), Vibodh Nautiyal (vibodhnautiyal), Nikhil Bhave (@XSiege999), Khushi Mehta
+Developers: Akshat Singh (@Akshat-Singh), Vibodh Nautiyal (@vibodhnautiyal), Nikhil Bhave (@XSiege999), Khushi Mehta(@khushi678)
 
 Organization: Ashoka University
 
@@ -16,6 +16,8 @@ Cops and Robbers is a graph theory problem that comes under the category of purs
 	<li>It can safely be assumed that both the cop and the robber will play optimally</li>
 </ul>
 
-Languages: C++17, Python3, JavaScript
+Languages: C++17
+
+Game Engine: ToyEngine
 
 
