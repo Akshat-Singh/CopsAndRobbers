@@ -13,7 +13,7 @@ class Graph:
     graph = [[]]  # A 2-D Matrix representation of a Graph
 
     """ Parameterized Constructor of the Graph Class """
-    S
+    
     def __init__(self, vertices, edges):
         self.vertices = vertices
         self.edges = edges
