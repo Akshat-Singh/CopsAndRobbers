@@ -1,9 +1,7 @@
 """ Header Files used to visualize graphs """
-import networkx as nx
 import matplotlib.pyplot as mpl
-
-""" Creating an object of the networkX library """
-visualGraph = nx.Graph()
+import networkx as nx
+import pygame
 
 
 class Graph:
@@ -12,31 +10,35 @@ class Graph:
     edges = 0
     adjacencyMatrix = [[]]  # A 2-D Matrix representation of a Graph
 
-    """ Parameterized Constructor of the Graph Class """
     def __init__(self, vertices, edges):
+        """ Parameterized Constructor of the Graph Class """
         self.vertices = vertices
         self.edges = edges
         """ Initializing the entire graph with 0s """
         self.adjacencyMatrix = [[0 for j in range(vertices)] for i in range(vertices)]
 
-    """ Definition of a function that adds an edge between two nodes on the adjacency matrix """
     def addEdge(self, emergentNode, terminalNode):
+        """ Definition of a function that adds an edge between two nodes on the adjacency matrix """
         self.adjacencyMatrix[emergentNode - 1][terminalNode - 1] = 1
         self.adjacencyMatrix[terminalNode - 1][emergentNode - 1] = 1
 
-    """ Definition of a function that accepts the edges of a graph and calls the addEdge function """
     def acceptGraph(self):
+        """ Definition of a function that accepts the edges of a graph and calls the addEdge function """
         for i in range(self.edges):
             emergentNode = int(input("Emergent Node: "))
             terminalNode = int(input("Terminal Node: "))
             self.addEdge(emergentNode, terminalNode)
 
-    """ Function that simply prints the entire Adjacency Matrix onto the console """
     def printAdjacencyMatrix(self):
+        """ Function that simply prints the entire Adjacency Matrix onto the console """
         print(f"{self.adjacencyMatrix}")
 
-    """ Definition of a function that uses matplotlib and networkx to visualize a graph """
     def visualizeGraph(self):
+        """ Definition of a function that uses matplotlib and networkx to visualize a graph """
+
+        """ Creating an object of the networkX library """
+        visualGraph = nx.Graph()
+
         for i in range(self.vertices):
             for j in range(self.vertices):
                 if self.adjacencyMatrix[i][j] == 1:
@@ -46,10 +48,8 @@ class Graph:
         mpl.show()
 
 
-""" Driver Code """
-
-
 def main():
+    """ Driver Code """
     towns = int(input("Number Of Vertices: "))
     roads = int(input("Number Of Edges: "))
     graph = Graph(towns, roads)
