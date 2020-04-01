@@ -55,4 +55,7 @@ def run():
     graph.acceptGraph()
     graph.visualizeGraph()
 
+#asdfgh
+
+run() 
 
