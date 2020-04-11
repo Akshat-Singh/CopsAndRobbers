@@ -13,27 +13,28 @@ screen.fill([255, 255, 255])
 
 """ Sprite Attributes """
 
-# COP ATTRIBUTES #
-cop = pygame.sprite.Sprite()
-cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (50, 50))
-cop.rect = cop.image.get_rect(center=(75, 75))
-screen.blit(cop.image, cop.rect)
-
 # GRAPH ATTRIBUTES #
 nodeVector = [pygame.sprite.Sprite() for i in range(10)]
-counter = 1
+counter = 0.5
+locationVector = []
 for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
-    node.rect = node.image.get_rect(center=(counter * 75, counter * 75))
+    node.rect = node.image.get_rect(center=(counter * 100, counter * 100))
+    locationVector.append((counter * 100, counter * 100))
     screen.blit(node.image, node.rect)
     counter = counter + 1
 
-"""
-graphNode = pygame.sprite.Sprite()
-graphNode.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (50, 50))
-graphNode.rect = graphNode.image.get_rect()
-screen.blit(graphNode.image, graphNode.rect)
-"""
+# COP ATTRIBUTES #
+cop = pygame.sprite.Sprite()
+cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (45, 45))
+cop.rect = cop.image.get_rect(center=locationVector[0])
+screen.blit(cop.image, cop.rect)
+
+
+# DRAW EDGES #
+for i in range(9):
+    pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[i + 1].rect.topleft, 5)
+
 
 
 def gameplay(gameRunning):
