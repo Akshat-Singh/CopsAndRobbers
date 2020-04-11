@@ -8,6 +8,8 @@ class Graph:
     vertices = 0
     edges = 0
     adjacencyMatrix = [[]]  # A 2-D Matrix representation of a Graph
+    cycleLength = 0
+    markTable = []
 
     def __init__(self, vertices, edges):
         """ Parameterized Constructor of the Graph Class """
@@ -15,6 +17,7 @@ class Graph:
         self.edges = edges
         """ Initializing the entire graph with 0s """
         self.adjacencyMatrix = [[0 for j in range(vertices)] for i in range(vertices)]
+        self.markTable = [False for i in range(self.vertices)]
 
     def addEdge(self, emergentNode, terminalNode):
         """ Definition of a function that adds an edge between two nodes on the adjacency matrix """
@@ -46,6 +49,12 @@ class Graph:
         nx.draw(visualGraph)
         mpl.show()
 
+    """
+        def robberWin(self):
+        for iterator in range (self.vertices):
+            if not self.markTable[iterator]:
+    """
+
 
 def run():
     """ Driver Code """
@@ -54,8 +63,4 @@ def run():
     graph = Graph(towns, roads)
     graph.acceptGraph()
     graph.visualizeGraph()
-
-#asdfgh
-
-run() 
 

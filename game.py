@@ -2,14 +2,23 @@
 import pygame
 import gameGraph
 
-pygame.init()       # Initialize pygame module
+pygame.init()  # Initialize pygame module
+surface = pygame.Surface((100, 100))
 
 
-def gameWindow():
-    """ Definition of a function to initialize the dimensions of the game window """
-    screenSize = (800, 720)
-    screen = pygame.display.set_mode(screenSize)
-    pygame.display.set_caption("Cops and Robbers")  
+""" Game Window Attributes """
+screenSize = (800, 720)
+screen = pygame.display.set_mode(screenSize)
+pygame.display.set_caption("Cops and Robbers")
+screen.fill([255, 255, 0])
+
+""" Sprite Attributes """
+
+# COP ATTRIBUTES #
+cop = pygame.sprite.Sprite()
+cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (50, 50))
+cop.rect = cop.image.get_rect()
+screen.blit(cop.image, cop.rect)
 
 
 def gameplay(gameRunning):
@@ -18,10 +27,8 @@ def gameplay(gameRunning):
         for userAction in pygame.event.get():
             if userAction.type == pygame.QUIT:
                 gameRunning = False
+        pygame.display.flip()
 
 
-if __name__ == '__main__':
-    runStatus = True
-    gameWindow()
-    gameplay(runStatus)
-
+runStatus = True
+gameplay(runStatus)
