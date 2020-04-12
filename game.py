@@ -19,6 +19,9 @@ def gameplay(gameRunning):
             if userAction.type == pygame.QUIT:
                 gameRunning = False
 
+        pygame.display.flip()  #PyGame is double-buffered. This swaps
+        # the buffers. This call is required in order for any updates
+        # that we make to the game screen to become visible.
 
 if __name__ == '__main__':
     runStatus = True
