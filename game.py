@@ -46,6 +46,9 @@ def gameplay(gameRunning):
                 gameRunning = False
         pygame.display.flip()
 
+        pygame.display.flip()  #PyGame is double-buffered. This swaps
+        # the buffers. This call is required in order for any updates
+        # that we make to the game screen to become visible.
 
 runStatus = True
 gameplay(runStatus)
