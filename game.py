@@ -1,9 +1,9 @@
 """ Header files to initialize the game """
 import pygame
 import gameGraph
+import random
 
 pygame.init()  # Initialize pygame module
-surface = pygame.Surface((100, 100))
 
 """ Game Window Attributes """
 screenSize = (1500, 1000)
@@ -19,8 +19,10 @@ counter = 0.5
 locationVector = []
 for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
-    node.rect = node.image.get_rect(center=(counter * 100, counter * 100))
-    locationVector.append((counter * 100, counter * 100))
+    xCent = random.randrange(50, 1450)
+    yCent = random.randrange(50, 950)
+    node.rect = node.image.get_rect(center=(xCent, yCent))
+    locationVector.append((xCent, yCent))
     screen.blit(node.image, node.rect)
     counter = counter + 1
 
@@ -33,8 +35,7 @@ screen.blit(cop.image, cop.rect)
 
 # DRAW EDGES #
 for i in range(9):
-    pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[i + 1].rect.topleft, 5)
-
+    pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.midright, nodeVector[i + 1].rect.midleft, 5)
 
 
 def gameplay(gameRunning):
