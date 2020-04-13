@@ -32,6 +32,11 @@ cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_
 cop.rect = cop.image.get_rect(center=locationVector[0])
 screen.blit(cop.image, cop.rect)
 
+# ROBBER ATTRIBUTES #
+robber = pygame.sprite.Sprite()
+robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (45, 45))
+robber.rect = robber.image.get_rect(center=locationVector[1])
+screen.blit(robber.image, robber.rect)
 
 # DRAW EDGES #
 for i in range(9):
@@ -46,9 +51,6 @@ def gameplay(gameRunning):
                 gameRunning = False
         pygame.display.flip()
 
-        pygame.display.flip()  #PyGame is double-buffered. This swaps
-        # the buffers. This call is required in order for any updates
-        # that we make to the game screen to become visible.
 
 runStatus = True
 gameplay(runStatus)
