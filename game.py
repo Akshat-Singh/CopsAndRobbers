@@ -7,6 +7,18 @@ from tkinter import messagebox
 from tkinter import *
 import secondaries
 
+
+def nodeClicked(nodeIndex):
+    Tk().wm_withdraw()  # to hide the main window
+    messagebox.showinfo('Node', 'Node: ' + str(nodeIndex))
+
+
+def checkLink(nodeA, nodeB):
+    return True
+
+
+
+
 pygame.init()  # Initialize pygame module
 surface = pygame.Surface((100, 100))
 
@@ -21,6 +33,7 @@ screen.fill([255, 255, 255])
 # GRAPH ATTRIBUTES #
 nodeVector = [pygame.sprite.Sprite() for i in range(10)]
 counter = 0.5
+
 locationVector = []
 for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
@@ -39,10 +52,12 @@ screen.blit(cop.image, cop.rect)
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, "img")
 
+
+# ROBBER ATTRIBUTES #
+robberNode = 1
 robber = pygame.sprite.Sprite()
 robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (45, 45))
-robber.rect = robber.image.get_rect(center=locationVector[1])
-screen.blit(robber.image, robber.rect)
+
 
 # DRAW EDGES #
 for i in range(9):
@@ -51,7 +66,9 @@ for i in range(9):
 
 def gameplay(gameRunning):
     """ Function that controls the essential initial components of the game """
+    global robberNode
     while gameRunning:
+        screen.blit(robber.image, locationVector[robberNode])
         for userAction in pygame.event.get():
             if userAction.type == pygame.QUIT:
                 gameRunning = False
@@ -62,7 +79,11 @@ def gameplay(gameRunning):
             if pygame.mouse.get_pressed()[0]:
                 for i in range(10):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
-                        secondaries.nodeClicked(i)
+                        nodeClicked(i)
+                        if checkLink(nodeVector[i], robberNode):
+                            pygame.draw.rect(screen, (255, 255, 255), (locationVector[robberNode], (75, 75)))
+                            robberNode = i
+                            # screen.blit(pygame.get_rect, locationVector[robberNode])
 
         pygame.display.flip()
 
@@ -72,4 +93,5 @@ def gameplay(gameRunning):
 
 
 runStatus = True
+robberNode = 1
 gameplay(runStatus)
