@@ -2,6 +2,8 @@
 import pygame
 import gameGraph
 import random
+from tkinter import messagebox
+from tkinter import *
 
 pygame.init()  # Initialize pygame module
 
@@ -49,6 +51,16 @@ def gameplay(gameRunning):
         for userAction in pygame.event.get():
             if userAction.type == pygame.QUIT:
                 gameRunning = False
+
+            if userAction.type == pygame.MOUSEBUTTONUP:
+                pos = pygame.mouse.get_pos()
+
+            if pygame.mouse.get_pressed()[0]:
+                for element in nodeVector:
+                    if element.rect.collidepoint(pygame.mouse.get_pos()):
+                        Tk().wm_withdraw()  # to hide the main window
+                        messagebox.showinfo('Continue', 'OK')
+
         pygame.display.flip()
 
 
