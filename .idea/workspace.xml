@@ -2,41 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9ab2479-f3b0-4c79-9822-9fddf052636b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/projectReport/appendix/appendix.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/background/background.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/bibs/sample.bib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/conclusion/conclusion.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/evaluation/evaluation.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/introduction/fig/Felix_the_cat.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/introduction/fig/figure1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/introduction/fig/figure2.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/introduction/introduction.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.aux" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.bbl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.blg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.lof" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.lot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.synctex.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/main.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/project/project.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/title/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/title/new doc 2020-03-06 09.02.17_20200306090314.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projectReport/title/title.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sprites/cop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sprites/node.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CopsAndRobbers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CopsAndRobbers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobberSprite.py" beforeDir="false" afterPath="$PROJECT_DIR$/RobberSprite.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/gameGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/cop.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,7 +36,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.RobberSprite">
+  <component name="RunManager" selected="Python.RobberSprite1">
     <configuration name="RobberSprite" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CopsAndRobbers" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,6 +50,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RobberSprite.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RobberSprite1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CopsAndRobbers" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RobberSprite1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,6 +102,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.RobberSprite1" />
         <item itemvalue="Python.RobberSprite" />
         <item itemvalue="Python.game" />
       </list>
@@ -119,10 +122,16 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="100" y="57" key="#RobberSprite" timestamp="1586690961020">
-      <screen x="0" y="23" width="1440" height="814" />
+    <state x="100" y="57" key="#RobberSprite" timestamp="1586692867384">
+      <screen x="0" y="23" width="1440" height="812" />
     </state>
+    <state x="100" y="38" key="#RobberSprite/0.0.1440.900@0.0.1440.900" timestamp="1586692695215" />
+    <state x="100" y="57" key="#RobberSprite/0.23.1440.812@0.23.1440.812" timestamp="1586692867384" />
     <state x="100" y="57" key="#RobberSprite/0.23.1440.814@0.23.1440.814" timestamp="1586690961020" />
+    <state x="392" y="77" key="#RobberSprite1" timestamp="1586697008898">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state x="392" y="77" key="#RobberSprite1/0.23.1440.812@0.23.1440.812" timestamp="1586697008898" />
     <state width="665" height="253" key="GridCell.Tab.0.bottom" timestamp="1586690872997">
       <screen x="0" y="23" width="1440" height="814" />
     </state>
@@ -155,5 +164,9 @@
       <screen x="0" y="23" width="1440" height="812" />
     </state>
     <state x="699" y="116" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.812@0.23.1440.812" timestamp="1585806517530" />
+    <state x="348" y="159" width="670" height="676" key="search.everywhere.popup" timestamp="1586692757034">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state x="348" y="159" width="670" height="676" key="search.everywhere.popup/0.23.1440.812@0.23.1440.812" timestamp="1586692757034" />
   </component>
 </project>
