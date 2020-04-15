@@ -40,10 +40,9 @@ for node in nodeVector:
     counter = counter + 1
 
 # COP ATTRIBUTES #
+copNode = 0
 cop = pygame.sprite.Sprite()
 cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (45, 45))
-cop.rect = cop.image.get_rect(center=locationVector[0])
-screen.blit(cop.image, cop.rect)
 
 ################
 game_folder = os.path.dirname(__file__)
@@ -63,29 +62,52 @@ valCorrect = 22
 
 def gameplay(gameRunning):
     """ Function that controls the essential initial components of the game """
-    global robberNode
+    global robberNode, copNode
     while gameRunning:
+
+        """ UPDATE POSITIONS OF COP AND ROBBER SPRITE AT EVERY STEP """
         screen.blit(robber.image,
-                    (locationVector[robberNode][0] - valCorrect, locationVector[robberNode][0] - valCorrect))
+                    (locationVector[robberNode][0] - valCorrect,
+                     locationVector[robberNode][0] - valCorrect))
+        screen.blit(cop.image,
+                    (locationVector[copNode][0] - valCorrect,
+                     locationVector[copNode][0] - valCorrect))
+        pygame.display.flip()
+
+        """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
+        if robberNode == copNode:
+            Tk().wm_withdraw()  # to hide the main window
+            messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+            gameRunning = False
+
+        """ HANDLE USER ACTION """
         for userAction in pygame.event.get():
+            """ QUIT IF THE EXIT CROSS IS CLICKED """
             if userAction.type == pygame.QUIT:
                 gameRunning = False
 
-            if userAction.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
-
+            """ HANDLING MOUSE BUTTON CLICKS """
             if pygame.mouse.get_pressed()[0]:
                 for i in range(10):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
                         nodeClicked(i)
+
                         if checkLink(nodeVector[i], robberNode):
+                            """ MOVING THE ROBBER TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 255, 255), (
                                 (
-                                locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect),
+                                    locationVector[robberNode][0] - valCorrect,
+                                    locationVector[robberNode][1] - valCorrect),
                                 (45, 45)))
                             robberNode = i
 
-        pygame.display.flip()
+                            """ MOVING THE COP TO A NEW NODE """
+                            pygame.draw.rect(screen, (255, 255, 255), (
+                                (
+                                    locationVector[copNode][0] - valCorrect,
+                                    locationVector[copNode][1] - valCorrect),
+                                (45, 45)))
+                            copNode = random.randint(0, 9)
 
 
 runStatus = True
