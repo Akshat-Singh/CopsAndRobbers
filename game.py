@@ -17,10 +17,7 @@ def checkLink(nodeA, nodeB):
     return True
 
 
-
-
 pygame.init()  # Initialize pygame module
-surface = pygame.Surface((100, 100))
 
 """ Game Window Attributes """
 screenSize = (1500, 1000)
@@ -52,23 +49,24 @@ screen.blit(cop.image, cop.rect)
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, "img")
 
-
 # ROBBER ATTRIBUTES #
 robberNode = 1
 robber = pygame.sprite.Sprite()
 robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (45, 45))
 
-
 # DRAW EDGES #
 for i in range(9):
     pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[i + 1].rect.topleft, 5)
+
+valCorrect = 22
 
 
 def gameplay(gameRunning):
     """ Function that controls the essential initial components of the game """
     global robberNode
     while gameRunning:
-        screen.blit(robber.image, locationVector[robberNode])
+        screen.blit(robber.image,
+                    (locationVector[robberNode][0] - valCorrect, locationVector[robberNode][0] - valCorrect))
         for userAction in pygame.event.get():
             if userAction.type == pygame.QUIT:
                 gameRunning = False
@@ -81,15 +79,13 @@ def gameplay(gameRunning):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
                         nodeClicked(i)
                         if checkLink(nodeVector[i], robberNode):
-                            pygame.draw.rect(screen, (255, 255, 255), (locationVector[robberNode], (75, 75)))
+                            pygame.draw.rect(screen, (255, 255, 255), (
+                                (
+                                locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect),
+                                (45, 45)))
                             robberNode = i
-                            # screen.blit(pygame.get_rect, locationVector[robberNode])
 
         pygame.display.flip()
-
-        pygame.display.flip()  # PyGame is double-buffered. This swaps
-        # the buffers. This call is required in order for any updates
-        # that we make to the game screen to become visible.
 
 
 runStatus = True
