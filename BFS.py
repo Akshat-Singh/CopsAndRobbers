@@ -85,7 +85,6 @@ def BFS(g, graph, home, target):
 
 	return shortest_path
 
-
 #=============================================================================
 
 # Driver Code 
