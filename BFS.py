@@ -35,7 +35,7 @@ def BFS(g, graph, home, target):
 		# No. of nodes = num_nodes
 		# Visited is a list; it contains Boolean values representing whether a node is visited or not
 		# Initialize starting point equivalent in "visited" to 'True'
-		num_nodes = g.length()rint(num_nodes)
+		num_nodes = g.length()
 		visited = [False] * num_nodes
 		visited[home] = True
 
@@ -66,7 +66,7 @@ def BFS(g, graph, home, target):
 	def BFS_reconstruction(home, target, parent):
 		path = []
 		length = len(parent)
-		i = length - 1
+		i = target
 		while(i != None):
 			path.append(i)
 			i = parent[i]
@@ -105,5 +105,7 @@ adjacency_matrix = g.adj()
 
 shortestPath = BFS(g, adjacency_matrix, 0, 3)
 
-print(shortestPath)
-
+if shortestPath != []:
+	print(shortestPath)
+else:
+	print("Sorry, no path exists between the home node and the target node")
