@@ -32,16 +32,12 @@ def BFS(g, graph, home, target):
 		queue = deque()
 		queue.append(home)
 
-		print(queue)
-
 		# No. of nodes = num_nodes
 		# Visited is a list; it contains Boolean values representing whether a node is visited or not
 		# Initialize starting point equivalent in "visited" to 'True'
-		num_nodes = g.length()
-		print(num_nodes)
+		num_nodes = g.length()rint(num_nodes)
 		visited = [False] * num_nodes
 		visited[home] = True
-		print(visited)
 
 		#distance list 
 		dist = [None] * num_nodes
@@ -58,8 +54,7 @@ def BFS(g, graph, home, target):
 					queue.append(i)
 					parent[i] = current
 					dist[i] = dist[current] + 1
-				print(visited, parent, queue)
-
+				
 		return dist, parent
 
 	#===========================================
@@ -111,6 +106,4 @@ adjacency_matrix = g.adj()
 shortestPath = BFS(g, adjacency_matrix, 0, 3)
 
 print(shortestPath)
-
-
 
