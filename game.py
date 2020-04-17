@@ -94,7 +94,7 @@ def gameplay(gameRunning):
 
                         if checkLink(nodeVector[i], robberNode):
                             """ MOVING THE ROBBER TO A NEW NODE """
-                            pygame.draw.rect(screen, (255, 255, 255), (
+                            pygame.draw.rect(screen, (255, 0, 0), (
                                 (
                                     locationVector[robberNode][0] - valCorrect,
                                     locationVector[robberNode][1] - valCorrect),
