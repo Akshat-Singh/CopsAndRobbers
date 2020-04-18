@@ -24,11 +24,10 @@ class Graph:
         self.adjacencyMatrix[emergentNode - 1][terminalNode - 1] = 1
         self.adjacencyMatrix[terminalNode - 1][emergentNode - 1] = 1
 
-    def acceptGraph(self):
+    def acceptGraph(self, attributes):
         """ Definition of a function that accepts the edges of a graph and calls the addEdge function """
-        for i in range(self.edges):
-            emergentNode = int(input("Emergent Node: "))
-            terminalNode = int(input("Terminal Node: "))
+        for i in range(1, self.edges + 1):
+            emergentNode, terminalNode = map(int, attributes[i].split())
             self.addEdge(emergentNode, terminalNode)
 
     def printAdjacencyMatrix(self):
@@ -49,18 +48,16 @@ class Graph:
         nx.draw(visualGraph)
         mpl.show()
 
-    """
-        def robberWin(self):
-        for iterator in range (self.vertices):
-            if not self.markTable[iterator]:
-    """
-
 
 def run():
     """ Driver Code """
-    towns = int(input("Number Of Vertices: "))
-    roads = int(input("Number Of Edges: "))
+    graphFile = open("data/level1.txt", "r")
+    fileData = graphFile.readlines()
+    towns, roads = map(int, fileData[0].split())
     graph = Graph(towns, roads)
-    graph.acceptGraph()
+    graph.acceptGraph(fileData)
+    graph.printAdjacencyMatrix()
     graph.visualizeGraph()
 
+
+run()
