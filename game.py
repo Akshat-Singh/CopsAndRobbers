@@ -28,17 +28,22 @@ screen.fill([255, 255, 255])
 """ Sprite Attributes """
 
 # GRAPH ATTRIBUTES #
-nodeVector = [pygame.sprite.Sprite() for i in range(10)]
-counter = 0.5
+nodeVector = [pygame.sprite.Sprite() for i in range(20)]
+counter = 0
 
+# ACCEPT GRAPH FROM FILE #
 locationVector = []
+file = open("data/nodePos1.txt", "r")
+lines = file.readlines()
+for line in lines:
+    x, y = map(int, line.split())
+    locationVector.append((x, y))
+
 for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
-    x = random.randint(25, 1425)
-    y = random.randint(25, 925)
-    node.rect = node.image.get_rect(center=(x, y))
-    locationVector.append((x, y))
+    node.rect = node.image.get_rect(center=locationVector[counter])
     screen.blit(node.image, node.rect)
+    print(f"{counter}")
     counter = counter + 1
 
 # COP ATTRIBUTES #
@@ -74,8 +79,6 @@ def gameplay(gameRunning):
         screen.blit(cop.image,
                     (locationVector[copNode][0] - valCorrect,
                      locationVector[copNode][1] - valCorrect))
-        print(f"RobberPos: {(locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect)} "
-              f"CopPos: {(locationVector[copNode][1] - valCorrect, locationVector[copNode][1] - valCorrect)} ")
         pygame.display.flip()
 
         """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
@@ -92,7 +95,7 @@ def gameplay(gameRunning):
 
             """ HANDLING MOUSE BUTTON CLICKS """
             if pygame.mouse.get_pressed()[0]:
-                for i in range(10):
+                for i in range(20):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
                         nodeClicked(i)
 
