@@ -8,6 +8,15 @@ from tkinter import *
 import secondaries
 
 
+""" GAME DRIVER CODE """
+graphFile = open("data/level1.txt", "r")
+fileData = graphFile.readlines()
+totalVertices, totalEdges = map(int, fileData[0].split())
+graph = gameGraph.Graph(totalVertices, totalEdges)
+graph.acceptGraph(fileData)
+gameMatrix = graph.returnAdjacencyMatrix()
+
+
 def nodeClicked(nodeIndex):
     Tk().wm_withdraw()  # to hide the main window
     messagebox.showinfo('Node', 'Node: ' + str(nodeIndex))
@@ -28,7 +37,7 @@ screen.fill([255, 255, 255])
 """ Sprite Attributes """
 
 # GRAPH ATTRIBUTES #
-nodeVector = [pygame.sprite.Sprite() for i in range(20)]
+nodeVector = [pygame.sprite.Sprite() for i in range(totalVertices)]
 counter = 0
 
 # ACCEPT GRAPH FROM FILE #
@@ -43,7 +52,6 @@ for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
     node.rect = node.image.get_rect(center=locationVector[counter])
     screen.blit(node.image, node.rect)
-    print(f"{counter}")
     counter = counter + 1
 
 # COP ATTRIBUTES #
@@ -61,8 +69,10 @@ robber = pygame.sprite.Sprite()
 robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (45, 45))
 
 # DRAW EDGES #
-for i in range(9):
-    pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[i + 1].rect.topleft, 5)
+for i in range(totalVertices):
+    for j in range(totalVertices):
+        if gameMatrix[i][j] == 1:
+            pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[j].rect.topleft, 5)
 
 valCorrect = 22
 
@@ -95,7 +105,7 @@ def gameplay(gameRunning):
 
             """ HANDLING MOUSE BUTTON CLICKS """
             if pygame.mouse.get_pressed()[0]:
-                for i in range(20):
+                for i in range(totalVertices):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
                         nodeClicked(i)
 

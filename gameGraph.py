@@ -48,6 +48,9 @@ class Graph:
         nx.draw(visualGraph)
         mpl.show()
 
+    def returnAdjacencyMatrix(self):
+        return self.adjacencyMatrix
+
 
 def run():
     """ Driver Code """
@@ -59,5 +62,3 @@ def run():
     graph.printAdjacencyMatrix()
     graph.visualizeGraph()
 
-
-run()
