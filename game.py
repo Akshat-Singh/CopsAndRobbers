@@ -96,12 +96,6 @@ def gameplay(gameRunning):
                      locationVector[copNode][1] - valCorrect))
         pygame.display.flip()
 
-        """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
-        if robberNode == copNode:
-            Tk().wm_withdraw()  # to hide the main window
-            messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
-            gameRunning = False
-
         """ HANDLE USER ACTION """
         for userAction in pygame.event.get():
             """ QUIT IF THE EXIT CROSS IS CLICKED """
@@ -123,6 +117,12 @@ def gameplay(gameRunning):
                                 (45, 45)))
                             robberNode = i
 
+                            """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
+                            if robberNode == copNode:
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                gameRunning = False
+
                             """ MOVING THE COP TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 255, 255), (
                                 (
@@ -131,7 +131,14 @@ def gameplay(gameRunning):
                                 (45, 45)))
                             copNode = random.randint(0, 9)
 
+                            """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
+                            if robberNode == copNode:
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                gameRunning = False
+
 
 runStatus = True
 robberNode = 1
 gameplay(runStatus)
+
