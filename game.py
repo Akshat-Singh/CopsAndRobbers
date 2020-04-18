@@ -34,8 +34,10 @@ counter = 0.5
 locationVector = []
 for node in nodeVector:
     node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
-    node.rect = node.image.get_rect(center=(counter * 100, counter * 100))
-    locationVector.append((counter * 100, counter * 100))
+    x = random.randint(25, 1425)
+    y = random.randint(25, 925)
+    node.rect = node.image.get_rect(center=(x, y))
+    locationVector.append((x, y))
     screen.blit(node.image, node.rect)
     counter = counter + 1
 
@@ -68,10 +70,12 @@ def gameplay(gameRunning):
         """ UPDATE POSITIONS OF COP AND ROBBER SPRITE AT EVERY STEP """
         screen.blit(robber.image,
                     (locationVector[robberNode][0] - valCorrect,
-                     locationVector[robberNode][0] - valCorrect))
+                     locationVector[robberNode][1] - valCorrect))
         screen.blit(cop.image,
                     (locationVector[copNode][0] - valCorrect,
-                     locationVector[copNode][0] - valCorrect))
+                     locationVector[copNode][1] - valCorrect))
+        print(f"RobberPos: {(locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect)} "
+              f"CopPos: {(locationVector[copNode][1] - valCorrect, locationVector[copNode][1] - valCorrect)} ")
         pygame.display.flip()
 
         """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
