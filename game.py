@@ -5,11 +5,11 @@ import os
 import random
 from tkinter import messagebox
 from tkinter import *
-import secondaries
-
+# import secondaries
 
 """ GAME DRIVER CODE """
-graphFile = open("data/level1.txt", "r")
+level = input("Welcome to Cops and Robbers! Please enter the level (1 - 20): ")
+graphFile = open("data/level"+level+".txt", "r")
 fileData = graphFile.readlines()
 totalVertices, totalEdges = map(int, fileData[0].split())
 graph = gameGraph.Graph(totalVertices, totalEdges)

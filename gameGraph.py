@@ -61,5 +61,5 @@ def run():
     towns, roads = map(int, fileData[0].split())
     graph = Graph(towns, roads)
     graph.acceptGraph(fileData)
-    graph.visualizeGraph()
+    # graph.visualizeGraph()
 
