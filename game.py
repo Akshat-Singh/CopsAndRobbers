@@ -22,11 +22,6 @@ gameMatrix = graph.returnDirectedAdjacencyMatrix()
 algoMatrix = graph.returnUndirectedAdjacencyMatrix()
 
 
-def nodeClicked(nodeIndex):
-    Tk().wm_withdraw()  # to hide the main window
-    messagebox.showinfo('Node', 'Node: ' + str(nodeIndex))
-
-
 def checkLink(nodeA, nodeB):
     if algoMatrix[nodeA][nodeB] == 1:
         return True
@@ -91,7 +86,7 @@ robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").co
 # DRAW EDGES #
 for i in range(totalVertices):
     for j in range(totalVertices):
-        if gameMatrix[i][j] == 1:
+        if gameMatrix[i][j] == 1 and i != j:
             pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.center, nodeVector[j].rect.center, int(5*factor))
 
 valCorrect = int(22 * factor)
@@ -117,7 +112,6 @@ def gameplay(gameRunning):
             if pygame.mouse.get_pressed()[0]:
                 for i in range(totalVertices):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
-                        nodeClicked(i)
 
                         if checkLink(i, robberNode):
                             """ MOVING THE ROBBER TO A NEW NODE """
