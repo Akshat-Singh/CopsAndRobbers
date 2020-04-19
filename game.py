@@ -6,6 +6,10 @@ import random
 from tkinter import messagebox
 from tkinter import *
 # import secondaries
+import platform
+
+currentOS = platform.system()
+print(f"{currentOS}")
 
 """ GAME DRIVER CODE """
 level = input("Welcome to Cops and Robbers! Please enter the level (1 - 20): ")
@@ -33,8 +37,17 @@ def checkLink(nodeA, nodeB):
 
 pygame.init()  # Initialize pygame module
 
+
+""" Optimizing screen resolution factor on the basis of operating system """
+if currentOS == "Windows":
+    factor = 0.8
+elif currentOS == "Linux":
+    factor = 1
+elif currentOS == "Darwin":
+    factor = 0.9
+
 """ Game Window Attributes """
-screenSize = (1500, 1000)
+screenSize = (int(1500*factor), int(1000*factor))
 screen = pygame.display.set_mode(screenSize)
 pygame.display.set_caption("Cops and Robbers")
 screen.fill([255, 255, 255])
@@ -51,10 +64,12 @@ file = open("data/nodePos1.txt", "r")
 lines = file.readlines()
 for line in lines:
     x, y = map(int, line.split())
+    x = int(x * factor)
+    y = int(y * factor)
     locationVector.append((x, y))
 
 for node in nodeVector:
-    node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (75, 75))
+    node.image = pygame.transform.scale(pygame.image.load("sprites/node.png").convert_alpha(), (int(75*factor), int(75*factor)))
     node.rect = node.image.get_rect(center=locationVector[counter])
     screen.blit(node.image, node.rect)
     counter = counter + 1
@@ -62,7 +77,7 @@ for node in nodeVector:
 # COP ATTRIBUTES #
 copNode = 0
 cop = pygame.sprite.Sprite()
-cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (45, 45))
+cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (int(45*factor), int(45*factor)))
 
 ################
 game_folder = os.path.dirname(__file__)
@@ -71,15 +86,15 @@ img_folder = os.path.join(game_folder, "img")
 # ROBBER ATTRIBUTES #
 robberNode = 1
 robber = pygame.sprite.Sprite()
-robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (45, 45))
+robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").convert_alpha(), (int(45*factor), int(45*factor)))
 
 # DRAW EDGES #
 for i in range(totalVertices):
     for j in range(totalVertices):
         if gameMatrix[i][j] == 1:
-            pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.center, nodeVector[j].rect.center, 5)
+            pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.center, nodeVector[j].rect.center, int(5*factor))
 
-valCorrect = 22
+valCorrect = int(22 * factor)
 
 
 def gameplay(gameRunning):
@@ -88,12 +103,8 @@ def gameplay(gameRunning):
     while gameRunning:
 
         """ UPDATE POSITIONS OF COP AND ROBBER SPRITE AT EVERY STEP """
-        screen.blit(robber.image,
-                    (locationVector[robberNode][0] - valCorrect,
-                     locationVector[robberNode][1] - valCorrect))
-        screen.blit(cop.image,
-                    (locationVector[copNode][0] - valCorrect,
-                     locationVector[copNode][1] - valCorrect))
+        screen.blit(robber.image, (locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect))
+        screen.blit(cop.image, (locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect))
         pygame.display.flip()
 
         """ HANDLE USER ACTION """
@@ -110,11 +121,8 @@ def gameplay(gameRunning):
 
                         if checkLink(i, robberNode):
                             """ MOVING THE ROBBER TO A NEW NODE """
-                            pygame.draw.rect(screen, (255, 0, 0), (
-                                (
-                                    locationVector[robberNode][0] - valCorrect,
-                                    locationVector[robberNode][1] - valCorrect),
-                                (45, 45)))
+                            pygame.draw.rect(screen, (255, 0, 0), ((locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect),
+                                             (int(45*factor), int(45*factor))))
                             robberNode = i
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
@@ -124,11 +132,8 @@ def gameplay(gameRunning):
                                 gameRunning = False
 
                             """ MOVING THE COP TO A NEW NODE """
-                            pygame.draw.rect(screen, (255, 255, 255), (
-                                (
-                                    locationVector[copNode][0] - valCorrect,
-                                    locationVector[copNode][1] - valCorrect),
-                                (45, 45)))
+                            pygame.draw.rect(screen, (255, 0, 0), ((locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect),
+                                             (int(45 * factor), int(45 * factor))))
                             copNode = random.randint(0, 9)
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
@@ -141,4 +146,3 @@ def gameplay(gameRunning):
 runStatus = True
 robberNode = 1
 gameplay(runStatus)
-
