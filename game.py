@@ -14,7 +14,8 @@ fileData = graphFile.readlines()
 totalVertices, totalEdges = map(int, fileData[0].split())
 graph = gameGraph.Graph(totalVertices, totalEdges)
 graph.acceptGraph(fileData)
-gameMatrix = graph.returnAdjacencyMatrix()
+gameMatrix = graph.returnDirectedAdjacencyMatrix()
+algoMatrix = graph.returnUndirectedAdjacencyMatrix()
 
 
 def nodeClicked(nodeIndex):
@@ -23,7 +24,11 @@ def nodeClicked(nodeIndex):
 
 
 def checkLink(nodeA, nodeB):
-    return True
+    if algoMatrix[nodeA][nodeB] == 1:
+        return True
+    Tk().wm_withdraw()  # to hide the main window
+    messagebox.showinfo('Node', 'Node: ' + str(nodeA) + ' is not connected to the current Robber Node')
+    return False
 
 
 pygame.init()  # Initialize pygame module
@@ -72,7 +77,7 @@ robber.image = pygame.transform.scale(pygame.image.load("sprites/robber.png").co
 for i in range(totalVertices):
     for j in range(totalVertices):
         if gameMatrix[i][j] == 1:
-            pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.bottomright, nodeVector[j].rect.topleft, 5)
+            pygame.draw.line(screen, (0, 0, 0), nodeVector[i].rect.center, nodeVector[j].rect.center, 5)
 
 valCorrect = 22
 
@@ -91,12 +96,6 @@ def gameplay(gameRunning):
                      locationVector[copNode][1] - valCorrect))
         pygame.display.flip()
 
-        """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
-        if robberNode == copNode:
-            Tk().wm_withdraw()  # to hide the main window
-            messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
-            gameRunning = False
-
         """ HANDLE USER ACTION """
         for userAction in pygame.event.get():
             """ QUIT IF THE EXIT CROSS IS CLICKED """
@@ -109,7 +108,7 @@ def gameplay(gameRunning):
                     if nodeVector[i].rect.collidepoint(pygame.mouse.get_pos()):
                         nodeClicked(i)
 
-                        if checkLink(nodeVector[i], robberNode):
+                        if checkLink(i, robberNode):
                             """ MOVING THE ROBBER TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 0, 0), (
                                 (
@@ -117,6 +116,12 @@ def gameplay(gameRunning):
                                     locationVector[robberNode][1] - valCorrect),
                                 (45, 45)))
                             robberNode = i
+
+                            """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
+                            if robberNode == copNode:
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                gameRunning = False
 
                             """ MOVING THE COP TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 255, 255), (
@@ -126,7 +131,14 @@ def gameplay(gameRunning):
                                 (45, 45)))
                             copNode = random.randint(0, 9)
 
+                            """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
+                            if robberNode == copNode:
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                gameRunning = False
+
 
 runStatus = True
 robberNode = 1
 gameplay(runStatus)
+
