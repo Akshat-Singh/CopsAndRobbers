@@ -117,23 +117,31 @@ def gameplay(gameRunning):
                             pygame.draw.rect(screen, (255, 0, 0), ((locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect),
                                              (int(45*factor), int(45*factor))))
                             robberNode = i
+                            screen.blit(robber.image, (
+                            locationVector[robberNode][0] - valCorrect, locationVector[robberNode][1] - valCorrect))
+                            pygame.display.flip()
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
                             if robberNode == copNode:
                                 Tk().wm_withdraw()  # to hide the main window
                                 messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
                                 gameRunning = False
+                                break
 
                             """ MOVING THE COP TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 0, 0), ((locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect),
                                              (int(45 * factor), int(45 * factor))))
                             copNode = random.randint(0, 9)
+                            screen.blit(cop.image, (
+                                locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect))
+                            pygame.display.flip()
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
                             if robberNode == copNode:
                                 Tk().wm_withdraw()  # to hide the main window
                                 messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
                                 gameRunning = False
+                                break
 
 
 runStatus = True
