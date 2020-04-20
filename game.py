@@ -5,7 +5,6 @@ import os
 import random
 from tkinter import messagebox
 from tkinter import *
-import secondaries
 import platform
 
 currentOS = platform.system()
