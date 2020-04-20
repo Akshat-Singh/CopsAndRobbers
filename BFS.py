@@ -106,7 +106,7 @@ adjacency_matrix = g.adj()
 
 shortestPath = BFS(g, adjacency_matrix, 0, 3)
 
-if shortestPath != []:
+if shortestPath:
     print(shortestPath)
 else:
     print("Sorry, no path exists between the home node and the target node")

@@ -47,7 +47,7 @@ counter = 0
 
 # ACCEPT GRAPH FROM FILE #
 locationVector = []
-file = open("data/nodePos1.txt", "r")
+file = open("data/nodePos"+level+".txt", "r")
 lines = file.readlines()
 for line in lines:
     x, y = map(int, line.split())
