@@ -3,9 +3,9 @@ import pygame
 import gameGraph
 import os
 import random
-# from tkinter import messagebox
-# from tkinter import *
-# import secondaries
+from tkinter import messagebox
+from tkinter import *
+import secondaries
 import platform
 
 currentOS = platform.system()
@@ -25,8 +25,8 @@ algoMatrix = graph.returnUndirectedAdjacencyMatrix()
 def checkLink(nodeA, nodeB):
     if algoMatrix[nodeA][nodeB] == 1:
         return True
-    # Tk().wm_withdraw()  # to hide the main window
-    # messagebox.showinfo('Node', 'Node: ' + str(nodeA) + ' is not connected to the current Robber Node')
+    Tk().wm_withdraw()  # to hide the main window
+    messagebox.showinfo('Node', 'Node: ' + str(nodeA) + ' is not connected to the current Robber Node')
     return False
 
 
@@ -121,8 +121,8 @@ def gameplay(gameRunning):
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
                             if robberNode == copNode:
-                                # Tk().wm_withdraw()  # to hide the main window
-                                # messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
                                 gameRunning = False
 
                             """ MOVING THE COP TO A NEW NODE """
@@ -132,8 +132,8 @@ def gameplay(gameRunning):
 
                             """ CHECK IF THE TWO SPRITES HAVE HIT THE SAME NODE """
                             if robberNode == copNode:
-                                # Tk().wm_withdraw()  # to hide the main window
-                                # messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
+                                Tk().wm_withdraw()  # to hide the main window
+                                messagebox.showinfo('Uh-Oh!', 'Looks like you were caught')
                                 gameRunning = False
 
 
