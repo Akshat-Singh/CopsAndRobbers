@@ -39,7 +39,7 @@ if currentOS == "Windows":
 elif currentOS == "Linux":
     factor = 1
 elif currentOS == "Darwin":
-    factor = 0.9
+    factor = 0.8
 
 """ Game Window Attributes """
 screenSize = (int(1500*factor), int(1000*factor))
