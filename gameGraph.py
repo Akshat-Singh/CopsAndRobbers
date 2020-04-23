@@ -36,8 +36,11 @@ class Graph:
     def returnUndirectedAdjacencyMatrix(self):
         return self.undirectedAdjacencyMatrix
 
+    def matrixLength(self):
+        return self.vertices
 
-def run():
+
+def testrun():
     """ Driver Code """
     graphFile = open("data/level1.txt", "r")
     fileData = graphFile.readlines()

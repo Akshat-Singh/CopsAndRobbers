@@ -1,131 +1,66 @@
-#=====================================================================
-#BFS
+# =====================================================================
+# BFS
 
 from collections import deque
+import gameGraph
 
-#=============================================================================
-# Define class for a graph and it's adjacency list
-#=============================================================================
-
-class Graph():
-	def __init__(self, vertices):
-		self.graph = [[0 for i in range(vertices)] for j in range(vertices)]
-
-	def matrix(self):
-		return self.graph 
-
-	def addEdge(self, u, v):
-		self.graph[u][v] = 1
-
-	def length(self):
-		return int(len(self.graph))
-
-#=============================================================================
-# Define BFS Algorithm. It consists of two functions: BFS Traveral and BFS Path Reconstruction
-#=============================================================================
 
 def BFS(g, home, target):
+    matrix = g.returnUndirectedAdjacencyMatrix()  # Extract the matrix from the graph
 
-	matrix = g.matrix() #Extract the matrix from the graph
-	print(matrix)
+    def BFS_traversal(g, matrix, home):
 
-	def BFS_traversal(g, matrix, home):
-		
-		# Make a queue and add the first element to it 		
-		queue = deque()
-		queue.append(home)
-
-		print(queue)
-
-		# No. of nodes = num_nodes
-		# Visited is a list; it contains Boolean values representing whether a node is visited or not
-		# Initialize starting point equivalent in "visited" to 'True'
-		num_nodes = g.length()
-		print(num_nodes)
-		visited = [False] * num_nodes
-		visited[home] = True
-		print(visited)
-
-		#distance list 
-		dist = [None] * num_nodes
-		dist[home] = 0 
-
-		#parent list
-		parent = [None] * num_nodes
-		
-		while queue:
-			current = queue.popleft()
-			for i in range(len(matrix[current])):
-				if matrix[current][i] == 1:
-					if visited[i] == False:
-						visited[i] = True
-						queue.append(i)
-						parent[i] = current
-						dist[i] = dist[current] + 1
-				print(visited, parent, queue)
-
-		return dist, parent
-
-	#===========================================
-
-	dist, parent = BFS_traversal(g, matrix, home) # Calling the function that we just defined
-
-	#===========================================
-
-	def BFS_reconstruction(home, target, parent):
-		path = []
-		length = len(parent)
-		i = target
-		while(i != None):
-			path.append(i)
-			i = parent[i]
-
-		path.reverse()
-
-		if path[0] == home:
-			return path
-		return []
-		
-	#===========================================
-
-	shortest_path = BFS_reconstruction(home, target, parent) #Calling the function we just defined
-
-	#===========================================
-
-	return shortest_path[1]
+        # Make a queue and add the first element to it
+        queue = deque()
+        queue.append(home)
 
 
-#=============================================================================
+        # No. of nodes = num_nodes
+        # Visited is a list; it contains Boolean values representing whether a node is visited or not
+        # Initialize starting point equivalent in "visited" to 'True'
+        num_nodes = g.matrixLength()
+        visited = [False] * num_nodes
+        visited[home] = True
 
-# Driver Code 
+        # distance list
+        dist = [None] * num_nodes
+        dist[home] = 0
 
-# Undirected Graph
-vertices = 9
-g = Graph(vertices) 
-g.addEdge(0, 1)
-g.addEdge(1, 0)
-g.addEdge(0, 2)
-g.addEdge(2, 0) 
-g.addEdge(1, 2)
-g.addEdge(2, 1)  
-g.addEdge(2, 3)
-g.addEdge(3, 2) 
-g.addEdge(0, 4)
-g.addEdge(4, 0)
-g.addEdge(4, 5)
-g.addEdge(5, 4)
-g.addEdge(3, 5)
-g.addEdge(5, 3)
-g.addEdge(5, 6)
-g.addEdge(6, 5)
-g.addEdge(8, 7)
-g.addEdge(7, 8)
+        # parent list
+        parent = [None] * num_nodes
 
+        while queue:
+            current = queue.popleft()
+            for i in range(len(matrix[current])):
+                if matrix[current][i] == 1:
+                    if not visited[i]:
+                        visited[i] = True
+                        queue.append(i)
+                        parent[i] = current
+                        dist[i] = dist[current] + 1
 
-shortestPath = BFS(g, 3, 6)
+        return dist, parent
 
-if shortestPath != []:
-	print(shortestPath)
-else:
-	print("Sorry, no path exists between the home node and the target node")
+    # ===========================================
 
+    dist, parent = BFS_traversal(g, matrix, home)  # Calling the function that we just defined
+
+    # ===========================================
+
+    def BFS_reconstruction(home, target, parent):
+        path = []
+        length = len(parent)
+        i = target
+        while i is not None:
+            path.append(i)
+            i = parent[i]
+
+        path.reverse()
+
+        if path[0] == home:
+            return path
+        return []
+
+    shortest_path = BFS_reconstruction(home, target, parent)  # Calling the function we just defined
+
+    return shortest_path[1]

@@ -6,9 +6,9 @@ import random
 from tkinter import messagebox
 from tkinter import *
 import platform
+import BFS
 
 currentOS = platform.system()
-print(f"{currentOS}")
 
 """ GAME DRIVER CODE """
 level = input("Welcome to Cops and Robbers! Please enter the level (1 - 20): ")
@@ -131,7 +131,7 @@ def gameplay(gameRunning):
                             """ MOVING THE COP TO A NEW NODE """
                             pygame.draw.rect(screen, (255, 0, 0), ((locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect),
                                              (int(45 * factor), int(45 * factor))))
-                            copNode = random.randint(0, 9)
+                            copNode = BFS.BFS(graph, copNode, robberNode)
                             screen.blit(cop.image, (
                                 locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect))
                             pygame.display.flip()
