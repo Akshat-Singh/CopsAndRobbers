@@ -20,12 +20,16 @@ def containsEdge(adjacencyMatrix, v1, v2):
 
 """checks whether a pitfall exists and removes all edges if it does"""
 def cop_robber_preliminary(adjacencyMatrix, vertices):
-    for i in range(vertices):
-        for j in range(vertices):
-            if i != j:
-                if (compare_lists(adjacencyMatrix[i], adjacencyMatrix[j], vertices)):
-                    removeAllEdges(adjacencyMatrix, i, vertices)
-                    break
+    counter = 0
+    while counter != vertices:
+        for i in range(vertices):
+            for j in range(vertices):
+                if i != j:
+                    if (compare_lists(adjacencyMatrix[i], adjacencyMatrix[j], vertices)):
+                        removeAllEdges(adjacencyMatrix, i, vertices)
+                        break
+
+        counter = counter + 1
 """checks whether it is a cop win graph or robber win graph"""
 """returns True if it is a robber win graph, and False if it a cop win graph"""
 def cop_robber_final(adjacencyMatrix, vertices):
