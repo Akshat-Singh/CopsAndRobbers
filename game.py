@@ -148,7 +148,7 @@ def gameplay(gameRunning):
                                 break
 
                             """ MOVING THE COP TO A NEW NODE """
-                            pygame.draw.rect(screen, (255, 0, 0), (
+                            pygame.draw.rect(screen, (0, 255, 0), (
                                 (locationVector[copNode][0] - valCorrect, locationVector[copNode][1] - valCorrect),
                                 (int(45 * factor), int(45 * factor))))
                             copNode = BFS.BFS(graph, copNode, robberNode)
