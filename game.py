@@ -12,7 +12,13 @@ import cop_robber_algorithm
 currentOS = platform.system()
 
 """ GAME DRIVER CODE """
-level = input("Welcome to Cops and Robbers! Please enter the level (1 - 20): ")
+print(f"Welcome to Cops and Robbers!")
+level = input("Please enter the level (1 - 13): ")
+
+while int(level) > 13 or int(level) < 1:
+    print(f"Invalid Input!")
+    level = input("Please enter the level (1 - 13): ")
+
 graphFile = open("data/level" + level + ".txt", "r")
 fileData = graphFile.readlines()
 totalVertices, totalEdges = map(int, fileData[0].split())
