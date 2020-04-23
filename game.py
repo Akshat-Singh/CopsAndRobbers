@@ -2,11 +2,12 @@
 import pygame
 import gameGraph
 import os
-import random
 from tkinter import messagebox
 from tkinter import *
 import platform
 import BFS
+import random
+import cop_robber_algorithm
 
 currentOS = platform.system()
 
@@ -69,7 +70,7 @@ for node in nodeVector:
     counter = counter + 1
 
 # COP ATTRIBUTES #
-copNode = 0
+copNode = random.randint(1, totalVertices - 1)
 cop = pygame.sprite.Sprite()
 cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(), (int(45*factor), int(45*factor)))
 
@@ -147,3 +148,6 @@ def gameplay(gameRunning):
 runStatus = True
 robberNode = 1
 gameplay(runStatus)
+cop_robber_algorithm.cop_robber_preliminary(algoMatrix, totalVertices)
+print(f"Robber Win") if cop_robber_algorithm.cop_robber_final(algoMatrix, totalVertices) else print(f"Cop Win")
+
