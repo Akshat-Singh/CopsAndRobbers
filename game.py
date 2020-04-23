@@ -82,7 +82,7 @@ for node in nodeVector:
     counter = counter + 1
 
 # COP ATTRIBUTES #
-copNode = random.randint(1, totalVertices - 1)
+copNode = 0
 cop = pygame.sprite.Sprite()
 cop.image = pygame.transform.scale(pygame.image.load("sprites/cop.png").convert_alpha(),
                                    (int(45 * factor), int(45 * factor)))
