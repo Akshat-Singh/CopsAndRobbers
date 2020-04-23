@@ -21,11 +21,7 @@ def BFS(g, home, target):
         num_nodes = g.matrixLength()
         visited = [False] * num_nodes
         visited[home] = True
-
-        # distance list
-        dist = [None] * num_nodes
-        dist[home] = 0
-
+        
         # parent list
         parent = [None] * num_nodes
 
@@ -37,9 +33,8 @@ def BFS(g, home, target):
                         visited[i] = True
                         queue.append(i)
                         parent[i] = current
-                        dist[i] = dist[current] + 1
-
-        return dist, parent
+                        
+        return parent
 
     # ===========================================
 
