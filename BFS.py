@@ -38,7 +38,7 @@ def BFS(g, home, target):
 
     # ===========================================
 
-    dist, parent = BFS_traversal(g, matrix, home)  # Calling the function that we just defined
+    parent = BFS_traversal(g, matrix, home)  # Calling the function that we just defined
 
     # ===========================================
 
