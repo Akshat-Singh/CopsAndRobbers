@@ -19,3 +19,9 @@ Cops and Robbers is a graph theory problem that comes under the category of purs
 Languages: Python3
 
 Primary Development Environment: Linux Ubuntu 19.04
+
+# Instructions
+1. Ensure that python3 is running on your computer<br>
+2. Clone the repository onto your remote device<br>
+3. Install pygame using pip3<br>
+4. Run the 'game.py' file with python3. 
